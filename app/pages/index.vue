@@ -1,0 +1,92 @@
+<script setup lang="ts">
+const { ready, loggedIn } = useUserSession()
+const isInNimiqPay = computed(() => import.meta.client && !!window.nimiq)
+</script>
+
+<template>
+  <UDashboardPanel id="home">
+    <template #header>
+      <UDashboardNavbar title="Nimzaar" :ui="{ right: 'gap-2' }">
+        <template #leading>
+          <UDashboardSidebarCollapse />
+        </template>
+
+        <template #right>
+          <UButton
+            color="neutral"
+            variant="outline"
+            icon="i-lucide-store"
+            to="/products"
+          >
+            Browse products
+          </UButton>
+          <UButton icon="i-lucide-plus" to="/products/new">
+            New product
+          </UButton>
+        </template>
+      </UDashboardNavbar>
+    </template>
+
+    <template #body>
+      <div class="space-y-4">
+        <UAlert
+          v-if="!isInNimiqPay"
+          color="warning"
+          variant="subtle"
+          title="Open in Nimiq Pay"
+          description="window.nimiq not detected. Some actions (sign-in, payments, address) require Nimiq Pay."
+        />
+
+        <UAlert
+          v-else-if="ready && !loggedIn"
+          color="info"
+          variant="subtle"
+          title="Sign in to buy or sell"
+          description="You can browse products without signing in, but buying/selling requires a signature in Nimiq Pay."
+          :actions="[{ label: 'Sign in', to: '/login', icon: 'i-lucide-log-in' }]"
+        />
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <UCard>
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-store" class="size-5 text-primary" />
+                <div class="font-medium">Products</div>
+              </div>
+            </template>
+            <p class="text-sm text-muted">Browse and buy digital goods.</p>
+            <template #footer>
+              <UButton to="/products" icon="i-lucide-arrow-right">Open</UButton>
+            </template>
+          </UCard>
+
+          <UCard>
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-library" class="size-5 text-primary" />
+                <div class="font-medium">Library</div>
+              </div>
+            </template>
+            <p class="text-sm text-muted">Open purchased links and PDFs.</p>
+            <template #footer>
+              <UButton color="neutral" variant="outline" to="/library" icon="i-lucide-arrow-right">Open</UButton>
+            </template>
+          </UCard>
+
+          <UCard>
+            <template #header>
+              <div class="flex items-center gap-2">
+                <UIcon name="i-lucide-plus" class="size-5 text-primary" />
+                <div class="font-medium">Sell</div>
+              </div>
+            </template>
+            <p class="text-sm text-muted">Create a new product and get paid in NIM.</p>
+            <template #footer>
+              <UButton to="/products/new" icon="i-lucide-arrow-right">Create</UButton>
+            </template>
+          </UCard>
+        </div>
+      </div>
+    </template>
+  </UDashboardPanel>
+</template>

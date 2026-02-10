@@ -1,0 +1,48 @@
+{
+  "name": "nimzaar",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.29.2",
+  "scripts": {
+    "dev": "nuxt dev --port 5175 --host",
+    "prebuild": "node -e \"try{require('fs').unlinkSync('node_modules/@nuxthub/blob/blob.mjs')}catch(e){}\"",
+    "build": "NITRO_PRESET=cloudflare-module nuxt build",
+    "cf:deploy": "pnpm build && wrangler deploy",
+    "cf:migrate:remote": "wrangler d1 migrations apply DB --remote",
+    "preview": "nuxt preview",
+    "test": "vitest run",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@iconify-json/lucide": "^1.2.90",
+    "@libsql/client": "^0.17.0",
+    "@noble/curves": "^2.0.1",
+    "@noble/hashes": "^2.0.1",
+    "@nuxt/ui": "^4.4.0",
+    "@nuxthub/core": "^0.10.6",
+    "@onmax/nuxt-better-auth": "github:nuxt-modules/better-auth#v0.0.2-alpha.21",
+    "better-auth": "1.4.18",
+    "drizzle-orm": "^0.45.1",
+    "nimiq-rpc-client-ts": "^1.0.0-beta.40",
+    "nuxt": "^4.3.0",
+    "tailwindcss": "^4.1.18",
+    "unstorage": "^1.17.4",
+    "valibot": "^1.1.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.31.9",
+    "typescript": "^5.9.3",
+    "vitest": "^4.0.14",
+    "wrangler": "^3.112.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "@onmax/nuxt-better-auth",
+      "@parcel/watcher",
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  }
+}

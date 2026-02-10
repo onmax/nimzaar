@@ -1,0 +1,41 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "nimzaar",
+  "account_id": "ba6e044dfdaaffec3cac45e9feccd237",
+  "compatibility_date": "2026-02-10",
+  "compatibility_flags": ["nodejs_compat", "no_nodejs_compat_v2"],
+
+  "main": ".output/server/index.mjs",
+  "assets": {
+    "directory": ".output/public",
+    "binding": "ASSETS"
+  },
+
+  "vars": {
+    "NUXT_NIMIQ_RPC_URL": "https://rpc.nimiqwatch.com",
+    "NUXT_MIN_CONFIRMATIONS": "1",
+    "NUXT_MAX_PDF_BYTES": "10485760"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "nimzaar",
+      "database_id": "f3aeb949-abe5-46b5-b596-3a835aee6735",
+      "migrations_table": "_hub_migrations",
+      "migrations_dir": "server/db/migrations/sqlite"
+    }
+  ],
+  "kv_namespaces": [
+    {
+      "binding": "KV",
+      "id": "7ea80533266f49a391427ea4f5b9fd7e"
+    }
+  ],
+  "r2_buckets": [
+    {
+      "binding": "BLOB",
+      "bucket_name": "nimzaar"
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+.DS_Store
+.data/
+.nuxt/
+.nuxt.bak.*/
+.output/
+.output.bak.*/
+.wrangler/
+.vercel/
+dist/
+node_modules/
+npm-debug.log*
+pnpm-debug.log*
+.nuxtrc
+.nuxtrc.*
+.env
+.env.*
