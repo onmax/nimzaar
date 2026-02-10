@@ -2,6 +2,8 @@
 
 Single Nuxt 4 + NuxtHub app providing an API-first backend and a minimal Vue UI meant to run inside Nimiq Pay.
 
+Live: [nimzaar.maximogarciamtnez.workers.dev](https://nimzaar.maximogarciamtnez.workers.dev/)
+
 ## Dev
 
 ```bash
