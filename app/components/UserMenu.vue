@@ -46,7 +46,7 @@ const items = computed<DropdownMenuItem[][]>(() => ([
         {
           label: 'Sign in',
           icon: 'i-lucide-log-in',
-          to: '/login',
+          to: '/app/login',
         },
       ],
 ]))
@@ -71,4 +71,3 @@ const items = computed<DropdownMenuItem[][]>(() => ([
     />
   </UDropdownMenu>
 </template>
-

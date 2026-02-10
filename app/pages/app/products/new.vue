@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ProductCreateResponse } from '../../../shared/contracts/products'
+import type { ProductCreateResponse } from '../../../../shared/contracts/products'
 
 const route = useRoute()
 const { loggedIn } = useUserSession()
@@ -183,15 +183,15 @@ async function uploadPdf() {
               {{ createdProductId }}
             </UBadge>
 
-            <UAlert
-              v-if="!loggedIn"
-              class="flex-1"
-              color="warning"
-              variant="subtle"
-              title="Sign in required"
-              description="Creating products requires signing in."
-              :actions="[{ label: 'Sign in', to: '/login', icon: 'i-lucide-log-in' }]"
-            />
+          <UAlert
+            v-if="!loggedIn"
+            class="flex-1"
+            color="warning"
+            variant="subtle"
+            title="Sign in required"
+            description="Creating products requires signing in."
+            :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
+          />
           </div>
         </UCard>
 

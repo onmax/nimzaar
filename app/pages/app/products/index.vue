@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { ProductListResponse } from '../../../shared/contracts/products'
-import type { OrderCreateResponse } from '../../../shared/contracts/orders'
+import type { ProductListResponse } from '../../../../shared/contracts/products'
+import type { OrderCreateResponse } from '../../../../shared/contracts/orders'
 
 const { loggedIn } = useUserSession()
 const { apiFetch } = useApi()
@@ -64,7 +64,7 @@ async function buy(productId: string) {
         </template>
 
         <template #right>
-          <UButton icon="i-lucide-plus" to="/products/new">
+          <UButton icon="i-lucide-plus" to="/app/products/new">
             New product
           </UButton>
         </template>

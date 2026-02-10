@@ -30,8 +30,8 @@ export default defineNuxtConfig({
       casing: 'snake_case',
     },
     redirects: {
-      login: '/login',
-      guest: '/login',
+      login: '/app/login',
+      guest: '/app/login',
     },
   },
   nitro: {

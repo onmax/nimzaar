@@ -5,11 +5,18 @@ const route = useRoute()
 
 const open = ref(false)
 
+function routePathToPageFile(path: string) {
+  const normalized = path.replace(/\/$/, '') || '/'
+  if (normalized === '/app') return '/app/index'
+  if (normalized === '/app/products') return '/app/products/index'
+  return normalized
+}
+
 const primaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
     label: 'Home',
     icon: 'i-lucide-house',
-    to: '/',
+    to: '/app',
     onSelect: () => {
       open.value = false
     },
@@ -17,7 +24,7 @@ const primaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
     label: 'Products',
     icon: 'i-lucide-store',
-    to: '/products',
+    to: '/app/products',
     onSelect: () => {
       open.value = false
     },
@@ -25,7 +32,7 @@ const primaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
     label: 'New product',
     icon: 'i-lucide-plus',
-    to: '/products/new',
+    to: '/app/products/new',
     onSelect: () => {
       open.value = false
     },
@@ -33,7 +40,7 @@ const primaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
     label: 'My products',
     icon: 'i-lucide-package',
-    to: '/products/mine',
+    to: '/app/products/mine',
     onSelect: () => {
       open.value = false
     },
@@ -41,7 +48,7 @@ const primaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
     label: 'Library',
     icon: 'i-lucide-library',
-    to: '/library',
+    to: '/app/library',
     onSelect: () => {
       open.value = false
     },
@@ -50,17 +57,9 @@ const primaryLinks = computed<NavigationMenuItem[]>(() => ([
 
 const secondaryLinks = computed<NavigationMenuItem[]>(() => ([
   {
-    label: 'Landing',
-    icon: 'i-lucide-sparkles',
-    to: '/landing',
-    onSelect: () => {
-      open.value = false
-    },
-  },
-  {
     label: 'Source',
     icon: 'i-lucide-github',
-    to: 'https://github.com/nuxt-ui-templates/dashboard',
+    to: 'https://github.com/onmax/nimzaar',
     target: '_blank',
   },
 ]))
@@ -85,7 +84,7 @@ const groups = computed(() => ([
         id: 'view-source',
         label: 'View page source',
         icon: 'i-lucide-file-code',
-        to: `https://github.com/nuxt-ui-templates/dashboard/blob/main/app/pages${route.path === '/' ? '/index' : route.path}.vue`,
+        to: `https://github.com/onmax/nimzaar/blob/main/app/pages${routePathToPageFile(route.path)}.vue`,
         target: '_blank',
       },
     ],
@@ -105,7 +104,7 @@ const groups = computed(() => ([
     >
       <template #header="{ collapsed }">
         <UButton
-          to="/"
+          to="/app"
           icon="i-lucide-store"
           color="neutral"
           variant="ghost"
@@ -145,4 +144,3 @@ const groups = computed(() => ([
     <slot />
   </UDashboardGroup>
 </template>
-

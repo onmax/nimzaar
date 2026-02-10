@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { LibraryResponse } from '../../shared/contracts/library'
+import type { ProductListResponse } from '../../../../shared/contracts/products'
 
 const { loggedIn, ready } = useUserSession()
-const { apiFetch, apiFetchRaw } = useApi()
+const { apiFetch } = useApi()
 
 const products = ref<any[]>([])
 const status = ref('')
@@ -15,7 +15,7 @@ async function load() {
   }
   loading.value = true
   try {
-    const res = await apiFetch<LibraryResponse>('/api/library')
+    const res = await apiFetch<ProductListResponse>('/api/products/mine')
     products.value = res.products
   } catch (e: any) {
     status.value = e?.data?.message || e?.message || String(e)
@@ -27,54 +27,34 @@ async function load() {
 watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
   if (isReady && isLoggedIn) load()
 }, { immediate: true })
-
-async function openContent(productId: string) {
-  if (!loggedIn.value) return
-  status.value = 'Fetching content...'
-  try {
-    const res = await apiFetchRaw(`/api/products/${productId}/content`)
-    const ct = res.headers.get('content-type') || ''
-    if (ct.includes('application/json')) {
-      const json = await res.json()
-      if (json.type === 'link') {
-        window.open(json.url, '_blank')
-        status.value = 'Opened link'
-      } else {
-        status.value = 'Unexpected JSON response'
-      }
-      return
-    }
-
-    const blob = await res.blob()
-    const url = URL.createObjectURL(blob)
-    window.open(url, '_blank')
-    status.value = 'Opened PDF'
-  } catch (e: any) {
-    status.value = e?.message || String(e)
-  }
-}
 </script>
 
 <template>
-  <UDashboardPanel id="library">
+  <UDashboardPanel id="products-mine">
     <template #header>
-      <UDashboardNavbar title="Library">
+      <UDashboardNavbar title="My products" :ui="{ right: 'gap-2' }">
         <template #leading>
           <UDashboardSidebarCollapse />
+        </template>
+
+        <template #right>
+          <UButton icon="i-lucide-plus" to="/app/products/new">
+            New product
+          </UButton>
         </template>
       </UDashboardNavbar>
     </template>
 
     <template #body>
       <div class="space-y-4">
-        <UAlert
-          v-if="!loggedIn"
-          color="warning"
-          variant="subtle"
-          title="Sign in required"
-          description="Accessing your library requires signing in."
-          :actions="[{ label: 'Sign in', to: '/login', icon: 'i-lucide-log-in' }]"
-        />
+          <UAlert
+            v-if="!loggedIn"
+            color="warning"
+            variant="subtle"
+            title="Sign in required"
+            description="Viewing your products requires signing in."
+            :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
+          />
 
         <UAlert
           v-else-if="status"
@@ -92,21 +72,34 @@ async function openContent(productId: string) {
             <template #header>
               <div class="flex flex-wrap items-center justify-between gap-3">
                 <div class="font-medium">{{ p.title }}</div>
-                <UBadge color="neutral" variant="subtle" class="text-xs">
-                  {{ p.contentType }}
-                </UBadge>
+                <div class="flex flex-wrap gap-2 text-xs">
+                  <UBadge color="neutral" variant="subtle">{{ p.contentType }}</UBadge>
+                  <UBadge color="primary" variant="subtle">{{ p.priceLuna }} luna</UBadge>
+                </div>
               </div>
             </template>
 
+            <div class="space-y-2">
+              <p v-if="p.description" class="text-sm text-muted">{{ p.description }}</p>
+
+              <UAlert
+                v-if="p.contentType === 'pdf' && !p.contentBlobPathname"
+                color="warning"
+                variant="subtle"
+                title="PDF not uploaded"
+              />
+            </div>
+
             <template #footer>
-              <div class="flex items-center justify-end">
+              <div class="flex items-center justify-end gap-2">
                 <UButton
+                  v-if="p.contentType === 'pdf'"
                   color="neutral"
                   variant="outline"
-                  icon="i-lucide-external-link"
-                  @click="openContent(p.id)"
+                  icon="i-lucide-upload"
+                  :to="`/app/products/new?uploadFor=${p.id}`"
                 >
-                  Open
+                  Upload PDF
                 </UButton>
               </div>
             </template>
