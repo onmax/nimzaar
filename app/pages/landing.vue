@@ -15,7 +15,7 @@ definePageMeta({ layout: false })
           <BitsDecryptedText text="Own your digital shelf." animate-on="view" :speed="50" :sequential="true" />
         </h1>
         <p class="sub">The crypto-native marketplace for digital goods. No middlemen. No passwords. Just NIM.</p>
-        <a href="#" class="cta">Enter the Bazaar</a>
+        <NuxtLink to="/products" class="cta">Enter the Bazaar</NuxtLink>
         <img src="/images/v1-hero.png" alt="Nimzaar hero" class="hero-img">
       </div>
     </section>
@@ -83,7 +83,7 @@ definePageMeta({ layout: false })
         <h2 class="footer-headline">
           <BitsDecryptedText text="Ready to own your shelf?" animate-on="view" :speed="50" :sequential="true" />
         </h2>
-        <a href="#" class="cta">Launch Nimzaar</a>
+        <NuxtLink to="/products" class="cta">Launch Nimzaar</NuxtLink>
         <p class="powered">Powered by Nimiq</p>
       </div>
     </section>
