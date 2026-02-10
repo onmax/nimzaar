@@ -1,5 +1,5 @@
 export default defineNuxtConfig({
-  modules: ['@nuxthub/core', '@onmax/nuxt-better-auth', '@nuxt/ui'],
+  modules: ['@nuxthub/core', '@onmax/nuxt-better-auth', '@nuxt/ui', '@nuxt/eslint'],
   css: ['~/assets/css/main.css'],
   hub: {
     db: 'sqlite',
@@ -37,6 +37,11 @@ export default defineNuxtConfig({
   nitro: {
     experimental: {
       openAPI: false,
+    },
+  },
+  eslint: {
+    config: {
+      standalone: false,
     },
   },
   typescript: {

@@ -46,7 +46,7 @@ export default defineEventHandler(async (event) => {
 
   const size = file.data instanceof Uint8Array
     ? file.data.byteLength
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    // eslint-disable-next-line ts/no-explicit-any
     : (file.data as any).size ?? 0
 
   if (size <= 0) {
