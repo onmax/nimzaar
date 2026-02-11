@@ -102,6 +102,7 @@ const groups = computed(() => ([
       class="bg-elevated/25"
       :ui="{ footer: 'lg:border-t lg:border-default' }"
     >
+      <template #toggle />
       <template #header="{ collapsed }">
         <UButton
           to="/app"
@@ -142,5 +143,7 @@ const groups = computed(() => ([
     <UDashboardSearch :groups="groups" />
 
     <slot />
+
+    <BottomNav />
   </UDashboardGroup>
 </template>

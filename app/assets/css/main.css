@@ -38,3 +38,7 @@
 :root {
   --ui-radius: 0;
 }
+
+@media (max-width: 1023px) {
+  [data-slot="body"] { padding-bottom: 4.5rem; }
+}
