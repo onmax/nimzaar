@@ -91,8 +91,6 @@ definePageMeta({ layout: false })
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap');
-
 .v1 {
   --bg: hsl(230, 15%, 8%);
   --gold: hsl(45, 95%, 55%);
@@ -101,7 +99,7 @@ definePageMeta({ layout: false })
 
   background: var(--bg);
   color: var(--white);
-  font-family: 'IBM Plex Sans', sans-serif;
+  font-family: var(--font-sans);
   width: 100vw;
   margin-left: calc(-50vw + 50%);
   margin-top: 0;
@@ -120,7 +118,7 @@ definePageMeta({ layout: false })
 
 /* GlitchText — override Tailwind-dependent styles */
 .v1 :deep(.v1-glitch-title) {
-  font-family: 'JetBrains Mono', monospace !important;
+  font-family: var(--font-mono) !important;
   font-size: clamp(1.5rem, 3vw, 2.25rem) !important;
   font-weight: 900;
   color: var(--white);
@@ -170,7 +168,7 @@ definePageMeta({ layout: false })
 }
 
 .headline {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: clamp(2rem, 6vw, 4rem);
   font-weight: 700;
   line-height: 1.1;
@@ -190,7 +188,7 @@ definePageMeta({ layout: false })
   display: inline-block;
   background: var(--gold);
   color: var(--bg);
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-weight: 700;
   font-size: 1rem;
   padding: 14px 32px;
@@ -226,7 +224,7 @@ definePageMeta({ layout: false })
 }
 
 .section-heading {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: clamp(1.5rem, 3vw, 2.25rem);
   font-weight: 700;
   margin: 0 0 48px;
@@ -255,7 +253,7 @@ definePageMeta({ layout: false })
 }
 
 .step-num {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: clamp(2.5rem, 5vw, 4rem);
   font-weight: 700;
   color: var(--gold);
@@ -265,7 +263,7 @@ definePageMeta({ layout: false })
 }
 
 .step-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 8px;
@@ -291,7 +289,7 @@ definePageMeta({ layout: false })
 }
 
 .benefit-title {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: 1.1rem;
   font-weight: 600;
   margin: 0 0 8px;
@@ -320,7 +318,7 @@ definePageMeta({ layout: false })
 }
 
 .footer-headline {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: var(--font-mono);
   font-size: clamp(1.5rem, 4vw, 2.5rem);
   font-weight: 700;
   margin: 0;

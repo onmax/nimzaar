@@ -81,13 +81,13 @@ async function buy(productId: string) {
         />
 
         <div v-if="loading" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          <USkeleton v-for="i in 6" :key="i" class="h-40 rounded-lg" />
+          <USkeleton v-for="i in 6" :key="i" class="h-40" />
         </div>
 
         <div v-else class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
           <UCard v-for="p in products" :key="p.id">
             <template #header>
-              <div class="font-medium">{{ p.title }}</div>
+              <div class="font-mono font-medium">{{ p.title }}</div>
             </template>
 
             <div class="space-y-2">

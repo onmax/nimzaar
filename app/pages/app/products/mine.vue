@@ -64,14 +64,14 @@ watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
         />
 
         <div v-if="loading" class="grid gap-4">
-          <USkeleton v-for="i in 4" :key="i" class="h-20 rounded-lg" />
+          <USkeleton v-for="i in 4" :key="i" class="h-20" />
         </div>
 
         <div v-else class="grid gap-4">
           <UCard v-for="p in products" :key="p.id">
             <template #header>
               <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="font-medium">{{ p.title }}</div>
+                <div class="font-mono font-medium">{{ p.title }}</div>
                 <div class="flex flex-wrap gap-2 text-xs">
                   <UBadge color="neutral" variant="subtle">{{ p.contentType }}</UBadge>
                   <UBadge color="primary" variant="subtle">{{ p.priceLuna }} luna</UBadge>

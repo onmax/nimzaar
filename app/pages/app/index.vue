@@ -51,7 +51,7 @@ const isInNimiqPay = computed(() => import.meta.client && !!window.nimiq)
             <template #header>
               <div class="flex items-center gap-2">
                 <UIcon name="i-lucide-store" class="size-5 text-primary" />
-                <div class="font-medium">Products</div>
+                <div class="font-mono font-medium">Products</div>
               </div>
             </template>
             <p class="text-sm text-muted">Browse and buy digital goods.</p>
@@ -64,7 +64,7 @@ const isInNimiqPay = computed(() => import.meta.client && !!window.nimiq)
             <template #header>
               <div class="flex items-center gap-2">
                 <UIcon name="i-lucide-library" class="size-5 text-primary" />
-                <div class="font-medium">Library</div>
+                <div class="font-mono font-medium">Library</div>
               </div>
             </template>
             <p class="text-sm text-muted">Open purchased links and PDFs.</p>
@@ -77,7 +77,7 @@ const isInNimiqPay = computed(() => import.meta.client && !!window.nimiq)
             <template #header>
               <div class="flex items-center gap-2">
                 <UIcon name="i-lucide-plus" class="size-5 text-primary" />
-                <div class="font-medium">Sell</div>
+                <div class="font-mono font-medium">Sell</div>
               </div>
             </template>
             <p class="text-sm text-muted">Create a new product and get paid in NIM.</p>

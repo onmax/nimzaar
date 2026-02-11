@@ -1,9 +1,13 @@
 export default defineAppConfig({
   ui: {
     colors: {
-      primary: 'green',
+      primary: 'gold',
       neutral: 'zinc',
+    },
+    dashboardNavbar: {
+      slots: {
+        title: 'font-mono',
+      },
     },
   },
 })
-

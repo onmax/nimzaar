@@ -197,7 +197,7 @@ async function uploadPdf() {
 
         <UCard v-if="uploadEndpoint">
           <template #header>
-            <div class="font-medium">Upload PDF</div>
+            <div class="font-mono font-medium">Upload PDF</div>
           </template>
 
           <div class="space-y-3">
