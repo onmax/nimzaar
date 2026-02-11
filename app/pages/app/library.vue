@@ -58,11 +58,7 @@ async function openContent(productId: string) {
 <template>
   <UDashboardPanel id="library">
     <template #header>
-      <UDashboardNavbar title="Library">
-        <template #leading>
-          <UDashboardSidebarCollapse />
-        </template>
-      </UDashboardNavbar>
+      <AppNavbar title="Library" />
     </template>
 
     <template #body>

@@ -108,11 +108,7 @@ async function uploadPdf() {
 <template>
   <UDashboardPanel id="products-new">
     <template #header>
-      <UDashboardNavbar title="New product">
-        <template #leading>
-          <UDashboardSidebarCollapse />
-        </template>
-      </UDashboardNavbar>
+      <AppNavbar title="New product" />
     </template>
 
     <template #body>

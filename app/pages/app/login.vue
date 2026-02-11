@@ -83,11 +83,7 @@ async function signIn() {
 <template>
   <UDashboardPanel id="login">
     <template #header>
-      <UDashboardNavbar title="Sign in">
-        <template #leading>
-          <UDashboardSidebarCollapse />
-        </template>
-      </UDashboardNavbar>
+      <AppNavbar title="Sign in" />
     </template>
 
     <template #body>

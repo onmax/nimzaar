@@ -6,25 +6,12 @@ const isInNimiqPay = computed(() => import.meta.client && !!window.nimiq)
 <template>
   <UDashboardPanel id="home">
     <template #header>
-      <UDashboardNavbar title="Nimzaar" :ui="{ right: 'gap-2' }">
-        <template #leading>
-          <UDashboardSidebarCollapse />
+      <AppNavbar title="Nimzaar">
+        <template #actions>
+          <UButton color="neutral" variant="outline" icon="i-lucide-store" to="/app/products">Browse products</UButton>
+          <UButton icon="i-lucide-plus" to="/app/products/new">New product</UButton>
         </template>
-
-        <template #right>
-          <UButton
-            color="neutral"
-            variant="outline"
-            icon="i-lucide-store"
-            to="/app/products"
-          >
-            Browse products
-          </UButton>
-          <UButton icon="i-lucide-plus" to="/app/products/new">
-            New product
-          </UButton>
-        </template>
-      </UDashboardNavbar>
+      </AppNavbar>
     </template>
 
     <template #body>

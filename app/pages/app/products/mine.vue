@@ -32,17 +32,11 @@ watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
 <template>
   <UDashboardPanel id="products-mine">
     <template #header>
-      <UDashboardNavbar title="My products" :ui="{ right: 'gap-2' }">
-        <template #leading>
-          <UDashboardSidebarCollapse />
+      <AppNavbar title="My products">
+        <template #actions>
+          <UButton icon="i-lucide-plus" to="/app/products/new">New product</UButton>
         </template>
-
-        <template #right>
-          <UButton icon="i-lucide-plus" to="/app/products/new">
-            New product
-          </UButton>
-        </template>
-      </UDashboardNavbar>
+      </AppNavbar>
     </template>
 
     <template #body>

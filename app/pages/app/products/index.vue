@@ -58,17 +58,11 @@ async function buy(productId: string) {
 <template>
   <UDashboardPanel id="products">
     <template #header>
-      <UDashboardNavbar title="Products" :ui="{ right: 'gap-2' }">
-        <template #leading>
-          <UDashboardSidebarCollapse />
+      <AppNavbar title="Products">
+        <template #actions>
+          <UButton icon="i-lucide-plus" to="/app/products/new">New product</UButton>
         </template>
-
-        <template #right>
-          <UButton icon="i-lucide-plus" to="/app/products/new">
-            New product
-          </UButton>
-        </template>
-      </UDashboardNavbar>
+      </AppNavbar>
     </template>
 
     <template #body>
