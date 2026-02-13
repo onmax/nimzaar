@@ -21,7 +21,7 @@
     "@noble/hashes": "^2.0.1",
     "@nuxt/ui": "^4.4.0",
     "@nuxthub/core": "^0.10.6",
-    "@onmax/nuxt-better-auth": "github:nuxt-modules/better-auth#v0.0.2-alpha.21",
+    "@onmax/nuxt-better-auth": "github:nuxt-modules/better-auth#v0.0.2-alpha.23",
     "better-auth": "1.4.18",
     "drizzle-orm": "^0.45.1",
     "nimiq-rpc-client-ts": "^1.0.0-beta.40",
