@@ -3,6 +3,7 @@ import type { ProductListResponse } from '../../../../shared/contracts/products'
 
 const { loggedIn, ready } = useUserSession()
 const { apiFetch } = useApi()
+const toast = useToast()
 
 const products = ref<any[]>([])
 const status = ref('')
@@ -17,15 +18,32 @@ async function load() {
   try {
     const res = await apiFetch<ProductListResponse>('/api/products/mine')
     products.value = res.products
-  } catch (e: any) {
+  }
+  catch (e: any) {
     status.value = e?.data?.message || e?.message || String(e)
-  } finally {
+  }
+  finally {
     loading.value = false
   }
 }
 
+async function deleteProduct(id: string) {
+  // eslint-disable-next-line no-alert
+  if (!window.confirm('Delete this product?'))
+    return
+  try {
+    await apiFetch(`/api/products/${id}`, { method: 'DELETE' })
+    products.value = products.value.filter(p => p.id !== id)
+    toast.add({ title: 'Product deleted', color: 'success' })
+  }
+  catch (e: any) {
+    toast.add({ title: e?.data?.message || e?.message || String(e), color: 'error' })
+  }
+}
+
 watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
-  if (isReady && isLoggedIn) load()
+  if (isReady && isLoggedIn)
+    load()
 }, { immediate: true })
 </script>
 
@@ -34,21 +52,23 @@ watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
     <template #header>
       <AppNavbar title="My products">
         <template #actions>
-          <UButton icon="i-lucide-plus" to="/app/products/new">New product</UButton>
+          <UButton icon="i-lucide-plus" to="/app/products/new">
+            New product
+          </UButton>
         </template>
       </AppNavbar>
     </template>
 
     <template #body>
       <div class="space-y-4">
-          <UAlert
-            v-if="!loggedIn"
-            color="warning"
-            variant="subtle"
-            title="Sign in required"
-            description="Viewing your products requires signing in."
-            :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
-          />
+        <UAlert
+          v-if="!loggedIn"
+          color="warning"
+          variant="subtle"
+          title="Sign in required"
+          description="Viewing your products requires signing in."
+          :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
+        />
 
         <UAlert
           v-else-if="status"
@@ -65,16 +85,24 @@ watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
           <UCard v-for="p in products" :key="p.id">
             <template #header>
               <div class="flex flex-wrap items-center justify-between gap-3">
-                <div class="font-mono font-medium">{{ p.title }}</div>
+                <div class="font-mono font-medium">
+                  {{ p.title }}
+                </div>
                 <div class="flex flex-wrap gap-2 text-xs">
-                  <UBadge color="neutral" variant="subtle">{{ p.contentType }}</UBadge>
-                  <UBadge color="primary" variant="subtle">{{ p.priceLuna }} luna</UBadge>
+                  <UBadge color="neutral" variant="subtle">
+                    {{ p.contentType }}
+                  </UBadge>
+                  <UBadge color="primary" variant="subtle">
+                    {{ p.priceLuna / 1e5 }} NIM
+                  </UBadge>
                 </div>
               </div>
             </template>
 
             <div class="space-y-2">
-              <p v-if="p.description" class="text-sm text-muted">{{ p.description }}</p>
+              <p v-if="p.description" class="text-sm text-muted">
+                {{ p.description }}
+              </p>
 
               <UAlert
                 v-if="p.contentType === 'pdf' && !p.contentBlobPathname"
@@ -95,6 +123,7 @@ watch([ready, loggedIn], ([isReady, isLoggedIn]) => {
                 >
                   Upload PDF
                 </UButton>
+                <UButton color="error" variant="ghost" icon="i-lucide-trash-2" @click="deleteProduct(p.id)" />
               </div>
             </template>
           </UCard>

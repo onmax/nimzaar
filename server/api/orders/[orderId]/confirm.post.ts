@@ -51,13 +51,15 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 502, message: `RPC error: ${txRes.error}` })
   }
 
-  const tx = txRes.data
+  // Library types say ExecutedTransaction (nested .transaction) but runtime returns flat Transaction
+  const rawTx = txRes.data
+  const tx = 'transaction' in rawTx ? rawTx.transaction : rawTx as unknown as typeof rawTx['transaction']
   const validated = validateOrderPayment({
     orderId,
     payoutAddress: order.payoutAddress,
     priceLuna: order.priceLuna,
     minConfirmations,
-    tx: tx as any,
+    tx,
   })
   if (!validated.ok) {
     throw createError({ statusCode: 400, message: validated.message })

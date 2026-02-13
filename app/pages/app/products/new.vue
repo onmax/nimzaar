@@ -4,15 +4,15 @@ import type { ProductCreateResponse } from '../../../../shared/contracts/product
 const route = useRoute()
 const { loggedIn } = useUserSession()
 const { apiFetch } = useApi()
+const toast = useToast()
 
 const title = ref('')
 const description = ref('')
-const priceLuna = ref(100000)
+const priceNim = ref(1)
 const contentType = ref<'link' | 'pdf'>('link')
 const linkUrl = ref('')
 const payoutAddress = ref('')
 
-const status = ref('')
 const loading = ref(false)
 
 const createdProductId = ref<string | null>(null)
@@ -25,13 +25,16 @@ function onFileChange(e: Event) {
 }
 
 async function fetchAddress() {
-  if (!window.nimiq) return
+  if (!window.nimiq)
+    return
   const res = await window.nimiq.listAccounts()
-  if (Array.isArray(res) && res[0]) payoutAddress.value = res[0]
+  if (Array.isArray(res) && res[0])
+    payoutAddress.value = res[0]
 }
 
 onMounted(() => {
-  if (!payoutAddress.value) fetchAddress()
+  if (!payoutAddress.value)
+    fetchAddress()
   const uploadFor = route.query.uploadFor
   if (typeof uploadFor === 'string') {
     createdProductId.value = uploadFor
@@ -41,19 +44,16 @@ onMounted(() => {
 })
 
 async function createProduct() {
-  if (!loggedIn.value) {
-    status.value = 'Sign in first'
+  if (!loggedIn.value || createdProductId.value)
     return
-  }
   loading.value = true
-  status.value = 'Creating...'
   try {
     const res = await apiFetch<ProductCreateResponse>('/api/products', {
       method: 'POST',
       body: {
         title: title.value,
         description: description.value || undefined,
-        priceLuna: Number(priceLuna.value),
+        priceLuna: Math.round(Number(priceNim.value) * 1e5),
         contentType: contentType.value,
         linkUrl: contentType.value === 'link' ? linkUrl.value : undefined,
         payoutAddress: payoutAddress.value || undefined,
@@ -61,45 +61,38 @@ async function createProduct() {
     })
 
     if ('product' in (res as any)) {
-      createdProductId.value = (res as any).product.id
-      uploadEndpoint.value = null
-      status.value = 'Created'
-    } else {
+      toast.add({ title: 'Product created', color: 'success' })
+      await navigateTo('/app/products/mine')
+    }
+    else {
       createdProductId.value = (res as any).productId
       uploadEndpoint.value = (res as any).uploadEndpoint
-      status.value = 'Created. Upload PDF next.'
+      toast.add({ title: 'Product created — upload PDF next', color: 'success' })
     }
-  } catch (e: any) {
-    status.value = e?.data?.message || e?.message || String(e)
-  } finally {
+  }
+  catch (e: any) {
+    toast.add({ title: e?.data?.message || e?.message || String(e), color: 'error' })
+  }
+  finally {
     loading.value = false
   }
 }
 
 async function uploadPdf() {
-  if (!loggedIn.value) {
-    status.value = 'Sign in first'
+  if (!loggedIn.value || !uploadEndpoint.value || !file.value)
     return
-  }
-  if (!uploadEndpoint.value) {
-    status.value = 'No upload endpoint'
-    return
-  }
-  if (!file.value) {
-    status.value = 'Pick a PDF first'
-    return
-  }
-
   loading.value = true
-  status.value = 'Uploading...'
   try {
     const form = new FormData()
     form.set('file', file.value)
     await apiFetch(uploadEndpoint.value, { method: 'POST', body: form })
-    status.value = 'Uploaded'
-  } catch (e: any) {
-    status.value = e?.data?.message || e?.message || String(e)
-  } finally {
+    toast.add({ title: 'PDF uploaded', color: 'success' })
+    await navigateTo('/app/products/mine')
+  }
+  catch (e: any) {
+    toast.add({ title: e?.data?.message || e?.message || String(e), color: 'error' })
+  }
+  finally {
     loading.value = false
   }
 }
@@ -113,21 +106,14 @@ async function uploadPdf() {
 
     <template #body>
       <div class="space-y-4">
-        <UAlert
-          v-if="status"
-          color="neutral"
-          variant="subtle"
-          :title="status"
-        />
-
         <UCard>
           <div class="grid gap-4 sm:grid-cols-2">
             <UFormField label="Title" required>
               <UInput v-model="title" placeholder="My awesome product" />
             </UFormField>
 
-            <UFormField label="Price (luna)" required>
-              <UInputNumber v-model="priceLuna" :min="1" />
+            <UFormField label="Price (NIM)" required>
+              <UInputNumber v-model="priceNim" :min="1" :step="1" />
             </UFormField>
 
             <UFormField label="Payout address">
@@ -151,7 +137,7 @@ async function uploadPdf() {
                 v-model="contentType"
                 :items="[
                   { label: 'Link', value: 'link' },
-                  { label: 'PDF', value: 'pdf' }
+                  { label: 'PDF', value: 'pdf' },
                 ]"
               />
             </UFormField>
@@ -175,29 +161,27 @@ async function uploadPdf() {
               Create
             </UButton>
 
-            <UBadge v-if="createdProductId" color="neutral" variant="subtle" class="font-mono text-xs">
-              {{ createdProductId }}
-            </UBadge>
-
-          <UAlert
-            v-if="!loggedIn"
-            class="flex-1"
-            color="warning"
-            variant="subtle"
-            title="Sign in required"
-            description="Creating products requires signing in."
-            :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
-          />
+            <UAlert
+              v-if="!loggedIn"
+              class="flex-1"
+              color="warning"
+              variant="subtle"
+              title="Sign in required"
+              description="Creating products requires signing in."
+              :actions="[{ label: 'Sign in', to: '/app/login', icon: 'i-lucide-log-in' }]"
+            />
           </div>
         </UCard>
 
         <UCard v-if="uploadEndpoint">
           <template #header>
-            <div class="font-mono font-medium">Upload PDF</div>
+            <div class="font-mono font-medium">
+              Upload PDF
+            </div>
           </template>
 
           <div class="space-y-3">
-            <input type="file" accept="application/pdf" @change="onFileChange" />
+            <input type="file" accept="application/pdf" @change="onFileChange">
 
             <UButton
               color="neutral"

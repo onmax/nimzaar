@@ -94,7 +94,7 @@ async function buy(productId: string) {
                   {{ p.contentType }}
                 </UBadge>
                 <UBadge color="primary" variant="subtle">
-                  {{ p.priceLuna }} luna
+                  {{ p.priceLuna / 1e5 }} NIM
                 </UBadge>
               </div>
             </div>

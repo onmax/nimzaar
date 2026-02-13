@@ -46,7 +46,7 @@ async function signIn() {
   loading.value = true
   status.value = 'Creating nonce...'
   try {
-    const nonceRes = await client.$fetch<{ nonceId: string, nonce: string }>('/nimiq/nonce', { method: 'POST' })
+    const nonceRes = await client.$fetch<{ nonceId: string, nonce: string }>('/nimiq/nonce', { method: 'POST', body: {} })
     if ((nonceRes as any)?.error) throw (nonceRes as any).error
     const nonce = (nonceRes as any).data ?? nonceRes
 
