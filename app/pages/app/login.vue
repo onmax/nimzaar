@@ -6,10 +6,6 @@ const address = ref<string | null>(null)
 const status = ref('')
 const loading = ref(false)
 
-function buildSignInMessage(params: { origin: string, nonce: string }) {
-  return `Sign in to Nimzaar\nOrigin: ${params.origin}\nNonce: ${params.nonce}`
-}
-
 async function fetchAddress() {
   if (!window.nimiq) {
     status.value = 'Open this inside Nimiq Pay'
@@ -44,31 +40,12 @@ async function signIn() {
   }
 
   loading.value = true
-  status.value = 'Creating nonce...'
+  status.value = 'Signing in...'
   try {
-    const nonceRes = await client.$fetch<{ nonceId: string, nonce: string }>('/nimiq/nonce', { method: 'POST', body: {} })
-    if ((nonceRes as any)?.error) throw (nonceRes as any).error
-    const nonce = (nonceRes as any).data ?? nonceRes
-
-    const message = buildSignInMessage({ origin: window.location.origin, nonce: nonce.nonce })
-
-    status.value = 'Signing...'
-    const sig = await window.nimiq.sign(message)
-    if ('error' in (sig as any)) {
-      throw new Error((sig as any).error?.message || 'Signing failed')
-    }
-
-    status.value = 'Verifying...'
-    const verifyRes = await client.$fetch('/nimiq/verify', {
-      method: 'POST',
-      body: {
-        nonceId: nonce.nonceId,
-        publicKeyHex: (sig as any).publicKey,
-        signatureHex: (sig as any).signature,
-        address: address.value || undefined,
-      },
+    await (client as any).signInNimiqPay({
+      appName: 'Nimzaar',
+      address: address.value || undefined,
     })
-    if ((verifyRes as any)?.error) throw (verifyRes as any).error
 
     await fetchSession({ force: true })
     status.value = 'Signed in'
@@ -145,4 +122,3 @@ async function signIn() {
     </template>
   </UDashboardPanel>
 </template>
-

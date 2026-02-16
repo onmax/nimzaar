@@ -26,9 +26,12 @@ importers:
       '@nuxthub/core':
         specifier: ^0.10.6
         version: 0.10.6(db0@0.3.4(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mysql2@3.15.3))(ioredis@5.9.2)(magicast@0.5.2)(synckit@0.11.12)(typescript@5.9.3)
+      '@onmax/better-auth-nimiq-pay':
+        specifier: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c6991
+        version: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c6991(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))
       '@onmax/nuxt-better-auth':
-        specifier: github:nuxt-modules/better-auth#v0.0.2-alpha.23
-        version: https://codeload.github.com/nuxt-modules/better-auth/tar.gz/d8497d7d93c83661cb90a40fb1f2dd923628b883(9cb406b08f483ca39428c2befd6bdf9f)
+        specifier: 0.0.2-alpha.25
+        version: 0.0.2-alpha.25(9cb406b08f483ca39428c2befd6bdf9f)
       better-auth:
         specifier: 1.4.18
         version: 1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))
@@ -60,6 +63,9 @@ importers:
       '@nuxt/eslint':
         specifier: ^1.15.1
         version: 1.15.1(@typescript-eslint/utils@8.55.0(eslint@9.39.2(jiti@2.6.1))(typescript@5.9.3))(@vue/compiler-sfc@3.5.28)(eslint@9.39.2(jiti@2.6.1))(magicast@0.5.2)(typescript@5.9.3)(vite@7.3.1(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))
+      '@onmax/better-auth-nimiq-pay-e2e':
+        specifier: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@24c6991
+        version: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@24c6991(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))
       drizzle-kit:
         specifier: ^0.31.9
         version: 0.31.9
@@ -1505,6 +1511,9 @@ packages:
   '@neon-rs/load@0.0.4':
     resolution: {integrity: sha512-kTPhdZyTQxB+2wpiRcFWrDcejc4JI6tkPuS7UZCG4l6Zvc5kU/gGQ/ozvHTh1XR5tS+UlfAfGuPajjzQjCiHCw==}
 
+  '@nimiq/utils@0.12.4':
+    resolution: {integrity: sha512-AcXDfaVIaDrqIiOg4QTLVenBkDlluYCpmoZ4ERPXmsqKGcYOBRAXZNFw+rFJm7T1RMygkONGsveZ5mgQNi9WcA==}
+
   '@noble/ciphers@2.1.1':
     resolution: {integrity: sha512-bysYuiVfhxNJuldNXlFEitTVdNnYUc+XNJZd7Qm2a5j1vZHgY+fazadNFWFaMK/2vye0JVlxV3gHmC0WDfAOQw==}
     engines: {node: '>= 20.19.0'}
@@ -1669,9 +1678,32 @@ packages:
   '@nuxtjs/color-mode@3.5.2':
     resolution: {integrity: sha512-cC6RfgZh3guHBMLLjrBB2Uti5eUoGM9KyauOaYS9ETmxNWBMTvpgjvSiSJp1OFljIXPIqVTJ3xtJpSNZiO3ZaA==}
 
-  '@onmax/nuxt-better-auth@https://codeload.github.com/nuxt-modules/better-auth/tar.gz/d8497d7d93c83661cb90a40fb1f2dd923628b883':
-    resolution: {tarball: https://codeload.github.com/nuxt-modules/better-auth/tar.gz/d8497d7d93c83661cb90a40fb1f2dd923628b883}
-    version: 0.0.2-alpha.23
+  '@onmax/better-auth-nimiq-pay-e2e@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@24c6991':
+    resolution: {integrity: sha512-8GWq1P6KuxGirlzPutzSqDEzLjh5QeCy3b7iAgCLdo+2vBVG8lfv1LS42UI8uSzIZDF3VmMaigpLt0cD/ZlcEQ==, tarball: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@24c6991}
+    version: 0.0.0
+
+  '@onmax/better-auth-nimiq-pay@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c6991':
+    resolution: {integrity: sha512-Xc1zY9IbR4iPRPGPFRQN0YNj3jRTsOLt2XJHvjrCpycLlynf5y7AAYCjiZ5idFDeSN29HARMIhhr55tcPQZang==, tarball: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c6991}
+    version: 0.0.0
+    peerDependencies:
+      '@nimiq/core': ^2.2.1
+      better-auth: '>=1.4.18 <2'
+    peerDependenciesMeta:
+      '@nimiq/core':
+        optional: true
+
+  '@onmax/better-auth-nimiq-pay@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c69912b17a85f37b6c937430b36f918fd912c9':
+    resolution: {integrity: sha512-Xc1zY9IbR4iPRPGPFRQN0YNj3jRTsOLt2XJHvjrCpycLlynf5y7AAYCjiZ5idFDeSN29HARMIhhr55tcPQZang==, tarball: https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c69912b17a85f37b6c937430b36f918fd912c9}
+    version: 0.0.0
+    peerDependencies:
+      '@nimiq/core': ^2.2.1
+      better-auth: '>=1.4.18 <2'
+    peerDependenciesMeta:
+      '@nimiq/core':
+        optional: true
+
+  '@onmax/nuxt-better-auth@0.0.2-alpha.25':
+    resolution: {integrity: sha512-xaj51QUmXUbWz2N/AyPyr36X6Llp7pmpdS/vTxqxnLwgLe++4bwtNTzGVoNF6x3EvPw6I2mvvGNoAU0rE3rkqA==}
     peerDependencies:
       '@nuxthub/core': '>=0.10.5'
       better-auth: '>=1.0.0'
@@ -3706,6 +3738,10 @@ packages:
     peerDependenciesMeta:
       zod:
         optional: true
+
+  big-integer@1.6.52:
+    resolution: {integrity: sha512-QxD8cf2eVqJOOz63z6JIN9BzvVs/dlySa5HGSBH5xtR8dPteIRQnBxxKqkNTiT6jbDTF6jAfrd4oMcND9RGbQg==}
+    engines: {node: '>=0.6'}
 
   bindings@1.5.0:
     resolution: {integrity: sha512-p2q/t/mhvuOj/UeLlV6566GD/guowlr0hHxClI0W9m7MWYkL1F0hLo+0Aexs9HSPCtR1SXQ0TD3MMKrXZajbiQ==}
@@ -8958,6 +8994,10 @@ snapshots:
 
   '@neon-rs/load@0.0.4': {}
 
+  '@nimiq/utils@0.12.4':
+    dependencies:
+      big-integer: 1.6.52
+
   '@noble/ciphers@2.1.1': {}
 
   '@noble/curves@2.0.1':
@@ -9589,7 +9629,32 @@ snapshots:
     transitivePeerDependencies:
       - magicast
 
-  '@onmax/nuxt-better-auth@https://codeload.github.com/nuxt-modules/better-auth/tar.gz/d8497d7d93c83661cb90a40fb1f2dd923628b883(9cb406b08f483ca39428c2befd6bdf9f)':
+  ? '@onmax/better-auth-nimiq-pay-e2e@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@24c6991(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))'
+  : dependencies:
+      '@noble/curves': 2.0.1
+      '@noble/hashes': 2.0.1
+      '@onmax/better-auth-nimiq-pay': https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c69912b17a85f37b6c937430b36f918fd912c9(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))
+    transitivePeerDependencies:
+      - '@nimiq/core'
+      - better-auth
+
+  ? '@onmax/better-auth-nimiq-pay@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c6991(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))'
+  : dependencies:
+      '@nimiq/utils': 0.12.4
+      '@noble/curves': 2.0.1
+      '@noble/hashes': 2.0.1
+      better-auth: 1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))
+      zod: 4.3.6
+
+  ? '@onmax/better-auth-nimiq-pay@https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@24c69912b17a85f37b6c937430b36f918fd912c9(better-auth@1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3)))'
+  : dependencies:
+      '@nimiq/utils': 0.12.4
+      '@noble/curves': 2.0.1
+      '@noble/hashes': 2.0.1
+      better-auth: 1.4.18(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(drizzle-kit@0.31.9)(drizzle-orm@0.45.1(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(@prisma/client@5.22.0(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(@types/pg@8.16.0)(kysely@0.28.11)(mysql2@3.15.3)(pg@8.18.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3)))(mongodb@7.1.0)(mysql2@3.15.3)(pg@8.18.0)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))
+      zod: 4.3.6
+
+  '@onmax/nuxt-better-auth@0.0.2-alpha.25(9cb406b08f483ca39428c2befd6bdf9f)':
     dependencies:
       '@better-auth/cli': 1.5.0-beta.13(@better-fetch/fetch@1.1.21)(@cloudflare/workers-types@4.20260210.0)(@electric-sql/pglite@0.3.15)(@libsql/client@0.17.0)(better-call@1.2.1(zod@4.3.6))(drizzle-kit@0.31.9)(jose@6.1.3)(kysely@0.28.11)(magicast@0.5.2)(mongodb@7.1.0)(mysql2@3.15.3)(nanostores@1.1.0)(postgres@3.4.7)(prisma@7.3.0(@types/react@19.2.13)(magicast@0.5.2)(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(typescript@5.9.3))(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vitest@4.0.18(@types/node@25.2.3)(jiti@2.6.1)(lightningcss@1.31.1)(terser@5.46.0)(yaml@2.8.2))(vue@3.5.28(typescript@5.9.3))
       '@nuxt/kit': 4.3.1(magicast@0.5.2)
@@ -11323,6 +11388,8 @@ snapshots:
       set-cookie-parser: 2.7.2
     optionalDependencies:
       zod: 4.3.6
+
+  big-integer@1.6.52: {}
 
   bindings@1.5.0:
     dependencies:

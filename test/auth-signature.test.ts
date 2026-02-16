@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest'
 import { ed25519 } from '@noble/curves/ed25519.js'
+import { createDefaultNimiqSignatureVerifier } from '@onmax/better-auth-nimiq-pay'
 import { bytesToHex } from '../server/utils/encoding'
-import { verifyNimiqSignedMessage } from '../server/utils/nimiq'
 import { sha256 } from '@noble/hashes/sha2.js'
+
+const verifyNimiqSignedMessage = createDefaultNimiqSignatureVerifier()
 
 describe('verifyNimiqSignedMessage', () => {
   it('verifies a valid signature for the prefixed message hash', () => {

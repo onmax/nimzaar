@@ -1,6 +1,6 @@
 import { defineServerAuth } from '@onmax/nuxt-better-auth/config'
+import { nimiqPay } from '@onmax/better-auth-nimiq-pay'
 import { bearer } from 'better-auth/plugins'
-import { nimiqPay } from './auth/plugins/nimiq-pay'
 
 export default defineServerAuth(() => ({
   emailAndPassword: { enabled: false },
@@ -26,6 +26,13 @@ export default defineServerAuth(() => ({
   },
   plugins: [
     bearer({ requireSignature: true }),
-    nimiqPay(),
+    nimiqPay({
+      appName: 'Nimzaar',
+      endpointPrefix: '/nimiq',
+      enforceOrigin: true,
+      tokenHeaderName: 'set-auth-token',
+      syncAddressToUser: true,
+      syncPublicKeyToUser: true,
+    }),
   ],
 }))
