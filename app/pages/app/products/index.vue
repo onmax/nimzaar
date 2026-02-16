@@ -9,6 +9,16 @@ const products = ref<any[]>([])
 const status = ref<string>('')
 const loading = ref(false)
 
+type NimiqPaymentProvider = {
+  sendBasicTransactionWithData: (tx: {
+    recipient: string
+    value: number
+    data: string
+    fee?: number
+    validityStartHeight?: number
+  }) => Promise<string | { error: { type: string, message: string } }>
+}
+
 async function load() {
   loading.value = true
   try {
@@ -35,7 +45,11 @@ async function buy(productId: string) {
   try {
     const order = await apiFetch<OrderCreateResponse>('/api/orders', { method: 'POST', body: { productId } })
     status.value = 'Requesting payment...'
-    const txHash = await window.nimiq.sendBasicTransactionWithData({
+    const paymentProvider = window.nimiq as typeof window.nimiq & NimiqPaymentProvider
+    if (typeof paymentProvider.sendBasicTransactionWithData !== 'function')
+      throw new Error('Nimiq payment API not available in this runtime')
+
+    const txHash = await paymentProvider.sendBasicTransactionWithData({
       recipient: order.recipient,
       value: order.value,
       data: order.data,

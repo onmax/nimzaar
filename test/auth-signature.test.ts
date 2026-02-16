@@ -1,69 +1,87 @@
-import { describe, expect, it } from 'vitest'
 import { ed25519 } from '@noble/curves/ed25519.js'
-import { createDefaultNimiqSignatureVerifier } from '@onmax/better-auth-nimiq-pay'
-import { bytesToHex } from '../server/utils/encoding'
 import { sha256 } from '@noble/hashes/sha2.js'
+import { buildSignInMessage, createDefaultNimiqSignatureVerifier } from '@onmax/better-auth-nimiq-pay'
+import { isNimiqProviderError } from '@onmax/better-auth-nimiq-pay/provider'
+import { createStubNimiqProvider } from '@onmax/better-auth-nimiq-pay-e2e'
+import { describe, expect, it } from 'vitest'
 
 const verifyNimiqSignedMessage = createDefaultNimiqSignatureVerifier()
+const textEncoder = new TextEncoder()
+
+function hexToBytes(hex: string): Uint8Array {
+  const bytes = new Uint8Array(hex.length / 2)
+  for (let i = 0; i < hex.length; i += 2)
+    bytes[i / 2] = Number.parseInt(hex.slice(i, i + 2), 16)
+  return bytes
+}
 
 describe('verifyNimiqSignedMessage', () => {
-  it('verifies a valid signature for the prefixed message hash', () => {
-    const priv = new Uint8Array(32)
-    for (let i = 0; i < priv.length; i++) priv[i] = i + 1
+  it('verifies signatures produced by the shared stub provider', async () => {
+    const provider = createStubNimiqProvider()
+    const message = buildSignInMessage({
+      appName: 'Nimzaar',
+      origin: 'https://nimzaar.test',
+      nonce: 'nonce-1',
+    })
 
-    const pub = ed25519.getPublicKey(priv)
-    const message = 'Sign in to Nimzaar\nChallenge: test'
-
-    // Recreate the Nimiq prefixing + sha256 pre-hash.
-    const prefix = '\x16Nimiq Signed Message:\n'
-    const byteLen = new TextEncoder().encode(message).length
-    const data = `${prefix}${byteLen}${message}`
-    const hash = sha256(new TextEncoder().encode(data))
-
-    const sig = ed25519.sign(hash, priv)
+    const signature = await provider.sign(message)
+    if (isNimiqProviderError(signature))
+      throw new Error(signature.error.message)
 
     const ok = verifyNimiqSignedMessage({
       message,
-      publicKeyHex: bytesToHex(pub),
-      signatureHex: bytesToHex(sig),
+      publicKeyHex: signature.publicKey,
+      signatureHex: signature.signature,
     })
 
     expect(ok).toBe(true)
   })
 
-  it('uses byte length (not JS string length)', () => {
-    const priv = new Uint8Array(32)
-    for (let i = 0; i < priv.length; i++) priv[i] = i + 1
+  it('uses byte length (not JS string length)', async () => {
+    const provider = createStubNimiqProvider()
+    const message = buildSignInMessage({
+      appName: 'Nimzaár',
+      origin: 'https://nimzaar.test',
+      nonce: 'nonce-1',
+    })
 
-    const pub = ed25519.getPublicKey(priv)
-    const message = 'Sign in to Nimzaar\nChallenge: tést'
-
-    const prefix = '\x16Nimiq Signed Message:\n'
-    const charLenData = `${prefix}${message.length}${message}`
-    const byteLen = new TextEncoder().encode(message).length
-    const byteLenData = `${prefix}${byteLen}${message}`
-
-    const sig = ed25519.sign(sha256(new TextEncoder().encode(byteLenData)), priv)
+    const signature = await provider.sign(message)
+    if (isNimiqProviderError(signature))
+      throw new Error(signature.error.message)
 
     expect(verifyNimiqSignedMessage({
       message,
-      publicKeyHex: bytesToHex(pub),
-      signatureHex: bytesToHex(sig),
+      publicKeyHex: signature.publicKey,
+      signatureHex: signature.signature,
     })).toBe(true)
 
-    // If we incorrectly used `.length`, verification would fail for non-ASCII.
-    expect(ed25519.verify(sig, sha256(new TextEncoder().encode(charLenData)), pub)).toBe(false)
+    const prefix = '\x16Nimiq Signed Message:\n'
+    const charLenPayload = `${prefix}${message.length}${message}`
+    expect(ed25519.verify(
+      hexToBytes(signature.signature),
+      sha256(textEncoder.encode(charLenPayload)),
+      hexToBytes(signature.publicKey),
+    )).toBe(false)
   })
 
-  it('rejects an invalid signature', () => {
-    const priv = new Uint8Array(32)
-    for (let i = 0; i < priv.length; i++) priv[i] = 7
-    const pub = ed25519.getPublicKey(priv)
+  it('rejects an invalid signature', async () => {
+    const provider = createStubNimiqProvider()
+    const message = buildSignInMessage({
+      appName: 'Nimzaar',
+      origin: 'https://nimzaar.test',
+      nonce: 'nonce-1',
+    })
 
+    const signature = await provider.sign(message)
+    if (isNimiqProviderError(signature))
+      throw new Error(signature.error.message)
+
+    const suffix = signature.signature.endsWith('0') ? '1' : '0'
+    const tampered = `${signature.signature.slice(0, -1)}${suffix}`
     const ok = verifyNimiqSignedMessage({
-      message: 'x',
-      publicKeyHex: bytesToHex(pub),
-      signatureHex: '00'.repeat(64),
+      message,
+      publicKeyHex: signature.publicKey,
+      signatureHex: tampered,
     })
 
     expect(ok).toBe(false)
