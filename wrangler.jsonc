@@ -21,7 +21,7 @@
     {
       "binding": "DB",
       "database_name": "nimzaar",
-      "database_id": "f3aeb949-abe5-46b5-b596-3a835aee6735",
+      "database_id": "5dcc3bde-e6ab-4ef0-9adc-0d917d6d5a28",
       "migrations_table": "_hub_migrations",
       "migrations_dir": "server/db/migrations/sqlite"
     }
