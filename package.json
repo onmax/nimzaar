@@ -22,7 +22,7 @@
     "@noble/hashes": "^2.0.1",
     "@nuxt/ui": "^4.4.0",
     "@nuxthub/core": "^0.10.6",
-    "@onmax/better-auth-nimiq-pay": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@6c6a25b",
+    "@onmax/better-auth-nimiq-pay": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@9cd199b",
     "@onmax/nuxt-better-auth": "0.0.2-alpha.25",
     "better-auth": "1.4.18",
     "drizzle-orm": "^0.45.1",
