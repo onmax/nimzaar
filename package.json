@@ -22,7 +22,7 @@
     "@noble/hashes": "^2.0.1",
     "@nuxt/ui": "^4.4.0",
     "@nuxthub/core": "^0.10.6",
-    "@onmax/better-auth-nimiq-pay": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@9cd199b",
+    "@onmax/better-auth-nimiq-pay": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay@0962980",
     "@onmax/nuxt-better-auth": "0.0.2-alpha.25",
     "better-auth": "1.4.18",
     "drizzle-orm": "^0.45.1",
@@ -36,7 +36,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^7.4.2",
     "@nuxt/eslint": "^1.15.1",
-    "@onmax/better-auth-nimiq-pay-e2e": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@6c6a25b",
+    "@onmax/better-auth-nimiq-pay-e2e": "https://pkg.pr.new/onmax/better-auth-nimiq-pay/@onmax/better-auth-nimiq-pay-e2e@0962980",
     "drizzle-kit": "^0.31.9",
     "eslint": "^9.39.2",
     "typescript": "^5.9.3",
